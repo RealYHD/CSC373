@@ -70,6 +70,34 @@ Here is the {\it Set-Cover} problem. You are given a set $E = \{ e_1, ..., e_n \
 
 \qpart{c}{5} Let ${\sf OPT}$ be value of the optimal solution of the set-cover. Prove that the rounding algorithm in (b) gives an $f$-approximation.
 
+\solution
+
+\solpart{b} We wish to show that the collection of subsets $S_j$ where $j \in I$ chosen by the rounding algorithm is a set cover. In order to do this, we must show that each element $e_i \in E$ is included by at least one subset in $S_j$. \\
+
+Let $f_i$ be the number of subsets in which $e_i$ appears. 
+
+To begin, note that for all $x^*_i$, at least one $x^*_i$ must be greater than $\frac{1}{f_i}$ due to constraints on the linear program (\textbf{claim 1}):
+
+\begin{align}
+	\forall i \in n, \sum_{j:e_i \in S_j} x_j &\geq 1 &(\text{LP constraints}) \\
+	\forall i \in n, \sum_{j:e_i \in S_j} x^*_j &\geq 1 &(\text{Optimal solution substitution})
+\end{align}
+
+Then (\textbf{claim 2}),
+
+\begin{align}
+	f_i &\leq f \\
+	\frac{1}{f_i} &\geq \frac{1}{f}
+\end{align}
+
+since, for each element, there is at least one  $x^*_i \geq \frac{1}{f_i}$ (claim 1), and $\frac{1}{f_i} \geq \frac{1}{f}$ (claim 2), then, (\textbf{claim 3}) $x^*_i \geq \frac{1}{f}$ ($x^*_i \geq \frac{1}{f_i} \geq \frac{1}{f}$).
+
+Claim 3 thus allows us to state that for every element, there exists at least one $x^*_i \geq \frac{1}{f}$. Since the rounding algorithm selects all subsets $S_i$ such that $x^*_i \geq \frac{1}{f}$ (as described), then, we can state that each element will appear at least once in at least one subset selected.
+
+Since our selection selection criteria is such that \(x^*_j \geq \frac{1}{f}\), Then, according to our first constraint in the relaxed LP, for any element $e_i$, they must exist  we have that at least one subset $S_j$ exists such that $x_j* \geq \frac{1}{f}$ We know that it must be at least $1$. This means that the sum of all $x_j*$ must evaluate to 1 as well, meaning that the collection of subsets, which indeed span all elements in $E$ form a set cover. 
+
+\qed
+
 \newpage
 
 \question{15}{Traveling Salesman}
